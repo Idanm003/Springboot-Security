@@ -8,12 +8,12 @@ public class CustomerUser {
     private String roles;
     private String permissions;
 
-    public CustomerUser(Long id, String username, String password, String permissions) {
+    public CustomerUser(Long id, String username, String password, int active, String roles, String permissions) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.active = 1;
-        this.roles = "USER";
+        this.active = active;
+        this.roles = roles;
         this.permissions = permissions;
     }
 

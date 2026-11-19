@@ -19,7 +19,7 @@ public class CustomerUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         CustomerUser customerUser = userService.findUserByUsername(username);
         if (customerUser == null) {
-            throw new UsernameNotFoundException("The provided customer username is not found");
+            throw new UsernameNotFoundException("The provided customer username: " + username + " is not found");
         }
 
         return User.builder()

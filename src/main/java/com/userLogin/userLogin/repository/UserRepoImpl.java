@@ -16,7 +16,9 @@ public class UserRepoImpl implements UserRepo {
 
     @Override
     public void createUser(CustomerUser user) {
-        String sql = "INSERT INTO " + USER_TABLE_NAME + " (username, password, roles, permissions) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO " + USER_TABLE_NAME +
+                " (username, password, roles, permissions)" +
+                " VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(
                 sql,
                 user.getUsername(),

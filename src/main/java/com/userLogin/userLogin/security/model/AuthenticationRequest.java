@@ -1,25 +1,25 @@
 package com.userLogin.userLogin.security.model;
 
 public class AuthenticationRequest {
-    private String Username;
-    private String Password;
+    private String username;
+    private String password;
 
     public AuthenticationRequest(String username, String password) {
-        Username = username;
-        Password = password;
+        this.username = username;
+        this.password = password;
     }
 
     public String getUsername() {
-        return this.Username;
+        return this.username;
     }
     public void setUsername(String username) {
-        Username = username;
+        this.username = username;
     }
 
     public String getPassword() {
-        return this.Password;
+        return this.password;
     }
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 }

@@ -1,6 +1,7 @@
 package com.userLogin.userLogin.security;
 
 import com.userLogin.userLogin.security.filter.JwtRequestFilter;
+import com.userLogin.userLogin.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +23,7 @@ public class SecurityConfigure {
     private CustomerUserDetailsService customerUserDetailsService;
 
     @Autowired
-    private JwtRequestFilter jwtRequestFilter;
+    private JwtUtil jwtUtil;
 
     @Bean
     public SecurityFilterChain securityFilterChain (HttpSecurity http) {
@@ -30,9 +31,9 @@ public class SecurityConfigure {
                 .csrf(csrf -> csrf.disable())
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/api/public/authenticate").permitAll()
                         .requestMatchers("/api/public/user/create").permitAll()
-                        .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/api/public/test1").authenticated()
                         .requestMatchers("/api/public/test2").hasRole("ADMIN")
                         .requestMatchers("/api/public/test3").hasRole("USER")
@@ -40,7 +41,8 @@ public class SecurityConfigure {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new JwtRequestFilter(customerUserDetailsService, jwtUtil),
+                UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

@@ -26,7 +26,10 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     public AuthenticationResponse createAuthenticationToken(AuthenticationRequest authenticationRequest) throws Exception {
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
+                    new UsernamePasswordAuthenticationToken(
+                            authenticationRequest.getUsername(),
+                            authenticationRequest.getPassword()
+                    )
             );
         } catch (Exception e) {
             throw new Exception("Invalid username or password");

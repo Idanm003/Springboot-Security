@@ -16,7 +16,7 @@ public class UserController {
 
     @PostMapping(value = "/create")
     @CrossOrigin
-    public ResponseEntity<?> createUser(@RequestBody CustomerUserRequest customerUserRequest) throws Exception {
+    public ResponseEntity<?> createUser(@RequestBody CustomerUserRequest customerUserRequest) {
         try {
             userService.createUser(customerUserRequest);
             return null;

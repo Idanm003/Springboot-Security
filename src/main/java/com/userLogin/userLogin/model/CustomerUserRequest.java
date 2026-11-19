@@ -28,6 +28,8 @@ public class CustomerUserRequest {
                 null,
                 this.getUsername(),
                 this.getPassword(),
+                1,
+                "USER",
                 ""
         );
     }

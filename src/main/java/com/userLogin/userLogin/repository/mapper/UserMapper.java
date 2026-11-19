@@ -13,6 +13,8 @@ public class UserMapper implements RowMapper<CustomerUser> {
             rs.getLong("id"),
             rs.getString("username"),
             rs.getString("password"),
+            rs.getInt("active"),
+            rs.getString("roles"),
             rs.getString("permissions")
         );
     }

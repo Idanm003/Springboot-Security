@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
 
     @Override
     public void createUser(CustomerUserRequest customerUserRequest) throws Exception {
-        CustomerUser existingUser = userRepo.findUserByUsername(customerUserRequest.getUsername());
+        CustomerUser existingUser = this.findUserByUsername(customerUserRequest.getUsername());
         if (existingUser != null) {
             throw new Exception("Username: " + customerUserRequest.getUsername() + " already exists");
         }
